@@ -286,7 +286,7 @@ struct LiveCaptionPanel: View {
     var body: some View {
         Text(text.isEmpty ? "Live captions appear here while you rehearse." : text)
             .font(.callout)
-            .foregroundStyle(text.isEmpty ? .secondary : .white)
+            .foregroundStyle(text.isEmpty ? Color.secondary : Color.white)
             .lineLimit(3)
             .frame(maxWidth: .infinity, minHeight: 64, alignment: .topLeading)
             .padding(12)
