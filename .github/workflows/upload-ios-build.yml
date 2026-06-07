@@ -14,7 +14,7 @@ permissions:
 jobs:
   archive-and-upload:
     name: Archive and Upload to App Store Connect
-    runs-on: macos-15
+    runs-on: macos-26
     timeout-minutes: 60
 
     env:
@@ -47,8 +47,13 @@ jobs:
       - name: Select Xcode
         run: |
           set -euo pipefail
-          sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+          if [ -d /Applications/Xcode_26.5.app ]; then
+            sudo xcode-select -s /Applications/Xcode_26.5.app/Contents/Developer
+          else
+            sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+          fi
           xcodebuild -version
+          xcrun --sdk iphoneos --show-sdk-version
 
       - name: Write App Store Connect API key
         env:
