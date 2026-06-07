@@ -120,7 +120,8 @@ jobs:
             MARKETING_VERSION="$MARKETING_VERSION" \
             CURRENT_PROJECT_VERSION="$BUILD_NUMBER" \
             CODE_SIGN_STYLE=Automatic \
-            CODE_SIGN_IDENTITY="Apple Distribution" \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
             clean archive
 
       - name: Export IPA
@@ -134,8 +135,7 @@ jobs:
             -allowProvisioningUpdates \
             -authenticationKeyPath "$ASC_KEY_PATH" \
             -authenticationKeyID "$ASC_KEY_ID" \
-            -authenticationKeyIssuerID "$ASC_ISSUER_ID" \
-            CODE_SIGN_IDENTITY="Apple Distribution"
+            -authenticationKeyIssuerID "$ASC_ISSUER_ID"
           IPA_PATH="$(find "$RUNNER_TEMP/export" -maxdepth 1 -name "*.ipa" -print -quit)"
           if [ -z "$IPA_PATH" ]; then
             echo "::error::No IPA was exported"
