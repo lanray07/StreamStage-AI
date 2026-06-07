@@ -1,0 +1,98 @@
+{
+  "identifier" : "StreamStageProducts",
+  "nonRenewingSubscriptions" : [],
+  "products" : [],
+  "settings" : {
+    "_applicationInternalID" : "com.streamstage.ai",
+    "_developerTeamID" : "TEAMID",
+    "_failTransactionsEnabled" : false,
+    "_lastSynchronizedDate" : 771120000,
+    "_locale" : "en_GB",
+    "_storefront" : "GBR",
+    "_storeKitErrors" : [],
+    "_subscriptionRenewalRate" : 0,
+    "_timeRate" : 0
+  },
+  "subscriptionGroups" : [
+    {
+      "id" : "streamstage-main",
+      "localizations" : [
+        {
+          "description" : "Practice going live before you go live.",
+          "displayName" : "StreamStage AI",
+          "locale" : "en_GB"
+        }
+      ],
+      "name" : "StreamStage AI",
+      "subscriptions" : [
+        {
+          "adHocOffers" : [],
+          "codeOffers" : [],
+          "displayPrice" : "GBP 9.99",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "creator-pro-monthly",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "Unlimited simulations, voice input, performance coach, replay review, and script builder.",
+              "displayName" : "Creator Pro Monthly",
+              "locale" : "en_GB"
+            }
+          ],
+          "productID" : "com.streamstage.creatorpro.monthly",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "Creator Pro Monthly",
+          "subscriptionGroupID" : "streamstage-main",
+          "type" : "RecurringSubscription"
+        },
+        {
+          "adHocOffers" : [],
+          "codeOffers" : [],
+          "displayPrice" : "GBP 79.99",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "creator-pro-yearly",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "Annual Creator Pro access.",
+              "displayName" : "Creator Pro Yearly",
+              "locale" : "en_GB"
+            }
+          ],
+          "productID" : "com.streamstage.creatorpro.yearly",
+          "recurringSubscriptionPeriod" : "P1Y",
+          "referenceName" : "Creator Pro Yearly",
+          "subscriptionGroupID" : "streamstage-main",
+          "type" : "RecurringSubscription"
+        },
+        {
+          "adHocOffers" : [],
+          "codeOffers" : [],
+          "displayPrice" : "GBP 19.99",
+          "familyShareable" : false,
+          "groupNumber" : 2,
+          "internalID" : "stream-elite-monthly",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "Advanced analytics, sales practice, intense Q&A mode, premium templates, and launch rehearsals.",
+              "displayName" : "Stream Elite Monthly",
+              "locale" : "en_GB"
+            }
+          ],
+          "productID" : "com.streamstage.streamelite.monthly",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "Stream Elite Monthly",
+          "subscriptionGroupID" : "streamstage-main",
+          "type" : "RecurringSubscription"
+        }
+      ]
+    }
+  ],
+  "version" : {
+    "major" : 4,
+    "minor" : 0
+  }
+}
