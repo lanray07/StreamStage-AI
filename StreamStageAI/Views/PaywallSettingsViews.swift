@@ -37,8 +37,8 @@ struct PaywallView: View {
                     }
 
                     PlanCard(
-                        title: "Creator Pro",
-                        price: "GBP 9.99 monthly or GBP 79.99 yearly",
+                        title: "Creator Pro Monthly",
+                        price: "GBP 9.99 per month",
                         features: [
                             "Unlimited simulations",
                             "Voice input",
@@ -59,8 +59,30 @@ struct PaywallView: View {
                     }
 
                     PlanCard(
-                        title: "Stream Elite",
-                        price: "GBP 19.99 monthly",
+                        title: "Creator Pro Yearly",
+                        price: "GBP 79.99 per year",
+                        features: [
+                            "Annual Creator Pro access",
+                            "Unlimited simulations",
+                            "Voice input",
+                            "AI performance coach",
+                            "Replay review",
+                            "Script builder"
+                        ],
+                        tint: .stageAmber
+                    ) {
+                        Task {
+                            if let product = subscription.products.first(where: { $0.id.contains("creatorpro.yearly") }) {
+                                await subscription.purchase(product)
+                            } else {
+                                activatePlaceholder(plan: .creatorPro)
+                            }
+                        }
+                    }
+
+                    PlanCard(
+                        title: "Stream Elite Monthly",
+                        price: "GBP 19.99 per month",
                         features: [
                             "Sales live practice",
                             "Intense Q&A mode",
@@ -83,6 +105,18 @@ struct PaywallView: View {
                     Text("All viewer counts, chat, reactions, and audience behavior in StreamStage AI are private simulations for rehearsal only.")
                         .font(.caption)
                         .foregroundStyle(.secondary)
+
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("Subscriptions renew automatically unless cancelled at least 24 hours before the end of the current period. Manage or cancel in your App Store account settings.")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+
+                        HStack(spacing: 12) {
+                            Link("Privacy Policy", destination: URL(string: "https://github.com/lanray07/StreamStage-AI/blob/main/PRIVACY.md")!)
+                            Link("Terms of Use (EULA)", destination: URL(string: "https://github.com/lanray07/StreamStage-AI/blob/main/TERMS.md")!)
+                        }
+                        .font(.caption.weight(.semibold))
+                    }
                 }
                 .padding(20)
             }
@@ -213,13 +247,13 @@ struct SettingsView: View {
                         }
 
                         settingsSection("Legal") {
-                            Link(destination: URL(string: "https://YOUR_DOMAIN.com/privacy")!) {
-                                SettingStaticRow(title: "Privacy policy", value: "Placeholder URL", systemImage: "hand.raised.fill")
+                            Link(destination: URL(string: "https://github.com/lanray07/StreamStage-AI/blob/main/PRIVACY.md")!) {
+                                SettingStaticRow(title: "Privacy policy", value: "GitHub", systemImage: "hand.raised.fill")
                             }
                             .buttonStyle(.plain)
 
-                            Link(destination: URL(string: "https://YOUR_DOMAIN.com/terms")!) {
-                                SettingStaticRow(title: "Terms of use", value: "Placeholder URL", systemImage: "doc.text.fill")
+                            Link(destination: URL(string: "https://github.com/lanray07/StreamStage-AI/blob/main/TERMS.md")!) {
+                                SettingStaticRow(title: "Terms of use", value: "GitHub", systemImage: "doc.text.fill")
                             }
                             .buttonStyle(.plain)
                         }
