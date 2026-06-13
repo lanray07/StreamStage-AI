@@ -57,6 +57,24 @@ final class SubscriptionService {
         }
     }
 
+    func restorePurchases() async {
+        isLoading = true
+        errorMessage = nil
+        defer { isLoading = false }
+
+        do {
+            try await AppStore.sync()
+            await refreshEntitlements()
+
+            if !isActive {
+                statusMessage = "No purchases to restore"
+            }
+        } catch {
+            errorMessage = error.localizedDescription
+            statusMessage = "Restore failed"
+        }
+    }
+
     func refreshEntitlements() async {
         var detectedPlan: SubscriptionPlan = .free
 

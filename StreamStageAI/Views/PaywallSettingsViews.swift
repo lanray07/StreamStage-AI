@@ -107,6 +107,32 @@ struct PaywallView: View {
                         .foregroundStyle(.secondary)
 
                     VStack(alignment: .leading, spacing: 8) {
+                        NeonButton(
+                            title: subscription.isLoading ? "Checking Purchases" : "Restore Purchases",
+                            systemImage: "arrow.clockwise.circle",
+                            style: .secondary
+                        ) {
+                            Task {
+                                await subscription.restorePurchases()
+
+                                if subscription.isActive {
+                                    dismiss()
+                                }
+                            }
+                        }
+
+                        Text(subscription.statusMessage)
+                            .font(.caption.weight(.semibold))
+                            .foregroundStyle(Color.stageMint)
+
+                        if let errorMessage = subscription.errorMessage {
+                            Text(errorMessage)
+                                .font(.caption)
+                                .foregroundStyle(Color.red)
+                        }
+                    }
+
+                    VStack(alignment: .leading, spacing: 8) {
                         Text("Subscriptions renew automatically unless cancelled at least 24 hours before the end of the current period. Manage or cancel in your App Store account settings.")
                             .font(.caption)
                             .foregroundStyle(.secondary)
@@ -197,6 +223,16 @@ struct SettingsView: View {
                                 systemImage: "crown.fill"
                             ) {
                                 appState.showPaywall = true
+                            }
+
+                            SettingRow(
+                                title: "Restore Purchases",
+                                subtitle: "Recover subscriptions bought with this Apple ID",
+                                systemImage: "arrow.clockwise.circle"
+                            ) {
+                                Task {
+                                    await appState.subscriptionService.restorePurchases()
+                                }
                             }
                         }
 
